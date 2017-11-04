@@ -34,7 +34,7 @@ object Main {
     val h = 2 * d2 + dc // 0 < z < h
 
 
-    val N = 10 // число шагов
+    val N = 100 // число шагов
 
     val dz = h * 1.0 / (N - 1)
 
@@ -64,8 +64,9 @@ object Main {
     beta(1) = F(0) / C(0)
 
     for (i <- 2 until N) {
-      alpha(i) = -B(i) / (A(i) * alpha(i - 1) + C(i))
-      beta(i) = (F(i) - A(i) * beta(i - 1)) / (A(i) * alpha(i - 1) + C(i))
+      val j = i - 1
+      alpha(i) = -B(j) / (A(j) * alpha(j) + C(j))
+      beta(i) = (F(j) - A(j) * beta(j)) / (A(j) * alpha(j) + C(i))
     }
 
     val x = Array.fill(N)(Complex(0, 0))
