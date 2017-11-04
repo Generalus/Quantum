@@ -34,7 +34,7 @@ object Main {
     val h = 2 * d2 + dc // 0 < z < h
 
 
-    val N = 100 // число шагов
+    val N = 10 // число шагов
 
     val dz = h * 1.0 / (N - 1)
 
