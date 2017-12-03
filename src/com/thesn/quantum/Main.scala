@@ -1,5 +1,9 @@
 package com.thesn.quantum
 
+import org.knowm.xchart.XYChart
+import org.knowm.xchart.QuickChart
+import org.knowm.xchart.SwingWrapper
+
 object Main {
 
 
@@ -7,18 +11,18 @@ object Main {
 
     val AII = 1
 
-    val lambda = 1.2e-5 // ???
+    val lambda = 1 // ??? 1.2e-5
 
     val k = 2 * Math.PI / lambda
 
 
     // коэффициенты преломления
 
-    val n1 = 3.4
+    val n1 = 1 // 3.4
 
-    val nc = 3.4 // GaAs
+    val nc = 1 // 3.4 GaAs
 
-    val n2 = 2.95 // AlAs
+    val n2 = 1 // 2.95 AlAs
 
     val n0 = 1 // ???
 
@@ -34,7 +38,7 @@ object Main {
     val h = 2 * d2 + dc // 0 < z < h
 
 
-    val N = 10 // число шагов
+    val N = 10000 // число шагов
 
     val dz = h * 1.0 / (N - 1)
 
@@ -54,7 +58,7 @@ object Main {
 
     val B = Array(Complex(0, -1.0 / d)) ++ Array.fill(N - 2)(1.0 / Math.pow(dz, 2)).map(Complex(_, 0)) ++ Array(Complex(0, 0))
 
-    val F = Array(Complex(AII, 0)) ++ Array.fill(N - 1)(Complex(0, 0))
+    val F = Array(Complex(2 * AII, 0)) ++ Array.fill(N - 1)(Complex(0, 0))
 
     val alpha = Array.fill(N)(Complex(0, 0))
     val beta = Array.fill(N)(Complex(0, 0))
@@ -66,19 +70,35 @@ object Main {
     for (i <- 2 until N) {
       val j = i - 1
       alpha(i) = -B(j) / (A(j) * alpha(j) + C(j))
-      beta(i) = (F(j) - A(j) * beta(j)) / (A(j) * alpha(j) + C(i))
+      beta(i) = (F(j) - A(j) * beta(j)) / (A(j) * alpha(j) + C(j))
     }
 
     val x = Array.fill(N)(Complex(0, 0))
 
     x(N - 1) = (F(N - 1) - A(N - 1) * beta(N - 1)) / (C(N - 1) + A(N - 1) * alpha(N - 1))
 
-    for (i <- N - 2 to(0, -1)) {
+    for (i <- (N - 2) to(0, -1)) {
       x(i) = alpha(i + 1) * x(i + 1) + beta(i + 1)
     }
 
     x.foreach(println)
 
+    showRealChart(z, x.map(_.re))
+
+    showModuleChart(z, x.map(!_))
+
+  }
+
+  def showRealChart(z: Array[Double], y: Array[Double]): Unit = {
+    val chart = QuickChart.getChart("Real chart", "Z", "ReY", "y(z)", z, y)
+    //chart.getStyler.setYAxisLogarithmic(true)
+    new SwingWrapper[XYChart](chart).displayChart
+  }
+
+  def showModuleChart(z: Array[Double], y: Array[Double]): Unit = {
+    val chart = QuickChart.getChart("Module chart", "Z", "|Y|", "y(z)", z, y)
+    //chart.getStyler.setYAxisLogarithmic(true)
+    new SwingWrapper[XYChart](chart).displayChart
   }
 
 
