@@ -1,8 +1,6 @@
-package com.thesn.quantum
+package com.thesn.quantum.bragg
 
-import org.knowm.xchart.XYChart
-import org.knowm.xchart.QuickChart
-import org.knowm.xchart.SwingWrapper
+import org.knowm.xchart.{QuickChart, SwingWrapper, XYChart}
 
 object Main {
 

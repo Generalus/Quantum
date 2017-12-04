@@ -1,4 +1,4 @@
-package com.thesn.quantum
+package com.thesn.quantum.bragg
 
 import scala.math._
 
