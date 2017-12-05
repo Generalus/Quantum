@@ -5,6 +5,9 @@ import org.knowm.xchart.{QuickChart, SwingWrapper, XYChart}
 object Main {
 
 
+  // TODO: вынести задачу в отдельный класс BraggProblem с методом solve (все константы задавать в билдере),
+  // а построение графика по массивам вынести в ChartGenerator
+  // makeArray(from: Double, to: Double, n: Int) вынести в отдельный утилитарный объект и пользоваться
   def main(args: Array[String]): Unit = {
 
     val AII = 1
