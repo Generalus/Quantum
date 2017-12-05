@@ -16,11 +16,11 @@ object Main {
 
     // коэффициенты преломления
 
-    val n1 = 1 // 3.4
+    val n1 = 3.4 // 3.4
 
-    val nc = 1 // 3.4 GaAs
+    val nc = 3.4 // 3.4 GaAs
 
-    val n2 = 1 // 2.95 AlAs
+    val n2 = 2.95 // 2.95 AlAs
 
     val n0 = 1 // ???
 
@@ -36,7 +36,7 @@ object Main {
     val h = 2 * d2 + dc // 0 < z < h
 
 
-    val N = 10000 // число шагов
+    val N = 1000 // число шагов
 
     val dz = h * 1.0 / (N - 1)
 
@@ -85,6 +85,9 @@ object Main {
 
     showModuleChart(z, x.map(!_))
 
+
+    showNChart(z, z.map(n))
+
   }
 
   def showRealChart(z: Array[Double], y: Array[Double]): Unit = {
@@ -99,5 +102,9 @@ object Main {
     new SwingWrapper[XYChart](chart).displayChart
   }
 
-
+  def showNChart(z: Array[Double], y: Array[Double]): Unit = {
+    val chart = QuickChart.getChart("n chart", "Z", "n", "n(z)", z, y)
+    //chart.getStyler.setYAxisLogarithmic(true)
+    new SwingWrapper[XYChart](chart).displayChart
+  }
 }
