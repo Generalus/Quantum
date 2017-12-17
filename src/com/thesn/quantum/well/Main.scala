@@ -26,18 +26,34 @@ object Main {
 
     val e = makeArray(V, 2 * V, 10000)
 
+
+
     val tResultArray = e.map(t)
     showTChart(e.map(_*1e20), tResultArray.map(_*1e20))
 
 
+
     println("Энергия первого резонансного уровня: " + er(1))
-    
+
+    def psi2(x: Double) = if (x >= 0 && x <= a) Math.pow(Math.sin(k1(er(1))*x), 2) else
+    if (x > a) Math.pow(Math.exp(-k1(er(1))*x), 2) else ???
+
+    val xs = makeArray(0.2*a, 1.2 * a, 10000)
+
+    showPChart(xs, xs.map(psi2))
+
 
   }
 
 
   def showTChart(z: Array[Double], y: Array[Double]): Unit = {
     val chart = QuickChart.getChart("Зависимость коэффициента прохождения от энергии", "E*e20", "T*e20", "t(e)", z, y)
+    //chart.getStyler.setYAxisLogarithmic(true)
+    new SwingWrapper[XYChart](chart).displayChart
+  }
+
+  def showPChart(z: Array[Double], y: Array[Double]): Unit = {
+    val chart = QuickChart.getChart("Зависимость волновой функции от ширины координаты при энергии соотв. первому резонансному уровню", "x", "psi2", "psi2(x)", z, y)
     //chart.getStyler.setYAxisLogarithmic(true)
     new SwingWrapper[XYChart](chart).displayChart
   }

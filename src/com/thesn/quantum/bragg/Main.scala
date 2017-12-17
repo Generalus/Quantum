@@ -8,6 +8,8 @@ object Main {
   // TODO: вынести задачу в отдельный класс BraggProblem с методом solve (все константы задавать в билдере),
   // а построение графика по массивам вынести в ChartGenerator
   // makeArray(from: Double, to: Double, n: Int) вынести в отдельный утилитарный объект и пользоваться
+
+  //https://knowm.org/open-source/xchart/xchart-example-code/
   def main(args: Array[String]): Unit = {
 
     val AII = 1
