@@ -35,7 +35,7 @@ object Main {
 
     println("Энергия первого резонансного уровня: " + er(1))
 
-    def psi2(x: Double) = if (x >= 0 && x <= a) Math.pow(Math.sin(k1(er(1))*x), 2) else
+    def psi2(x: Double) = if (x >= 0 && x <= a) Math.pow(Math.sin(k1(V + er(1))*x), 2) else
     if (x > a) Math.pow(Math.exp(-k1(er(1))*x), 2) else ???
 
     val xs = makeArray(0.2*a, 1.2 * a, 10000)
