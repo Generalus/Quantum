@@ -16,6 +16,11 @@ object Main {
     result.showNChart()
     result.showRealChart()
 
+    println(result.T) // коэфф пропускания
+
+    // в 3.1 длина волны в каком промежутке для рассчетов?
+    
+
   }
 
 

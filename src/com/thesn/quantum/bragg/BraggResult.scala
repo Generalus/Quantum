@@ -2,7 +2,7 @@ package com.thesn.quantum.bragg
 
 import org.knowm.xchart.{QuickChart, SwingWrapper, XYChart}
 
-case class BraggResult(coordinates: Array[Double], result: Array[Complex], n: Array[Double] ) {
+case class BraggResult(coordinates: Array[Double], result: Array[Complex], n: Array[Double], T: Double) {
 
   def showRealChart(): Unit = {
     val chart = QuickChart.getChart("Real chart", "Z", "ReY", "y(z)", coordinates, result.map(_.re))

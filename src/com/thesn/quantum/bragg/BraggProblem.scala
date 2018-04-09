@@ -64,7 +64,7 @@ case class BraggProblem(
       x(i) = alpha(i + 1) * x(i + 1) + beta(i + 1)
     }
 
-    BraggResult(z, x, z.map(n))
+    BraggResult(z, x, z.map(n), Math.pow(!x(1)/AII, 2))
   }
 
 }
